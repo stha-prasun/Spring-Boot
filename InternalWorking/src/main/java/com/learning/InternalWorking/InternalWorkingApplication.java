@@ -1,5 +1,6 @@
 package com.learning.InternalWorking;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,9 +12,11 @@ public class InternalWorkingApplication implements CommandLineRunner {
 		SpringApplication.run(InternalWorkingApplication.class, args);
 	}
 
-    //    private RazorpayPaymentService paymentService = new RazorpayPaymentService();
+    //    private RazorpayPaymentService paymentService = new RazorpayPaymentService(); <- Old Method To Create Objects
+//    @Autowired (Field Dependency Injection)
     private RazorpayPaymentService paymentService;
 
+//    Constructor Dependency Injection (Commonly Used)
     public InternalWorkingApplication(RazorpayPaymentService paymentService) {
         this.paymentService = paymentService;
     }
