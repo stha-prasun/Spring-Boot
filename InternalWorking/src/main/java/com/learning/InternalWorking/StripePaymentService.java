@@ -2,7 +2,7 @@ package com.learning.InternalWorking;
 
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class StripePaymentService implements PaymentService{
 
     @Override
