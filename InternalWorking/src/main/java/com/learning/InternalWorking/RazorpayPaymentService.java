@@ -1,8 +1,10 @@
 package com.learning.InternalWorking;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 @Component
+@ConditionalOnProperty(name = "payment.provider", havingValue = "razorpay")
 public class RazorpayPaymentService implements PaymentService {
 
     @Override
