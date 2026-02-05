@@ -14,10 +14,10 @@ public class InternalWorkingApplication implements CommandLineRunner {
 
     //    private RazorpayPaymentService paymentService = new RazorpayPaymentService(); <- Old Method To Create Objects
 //    @Autowired (Field Dependency Injection)
-    private RazorpayPaymentService paymentService;
+    private final PaymentService paymentService;
 
 //    Constructor Dependency Injection (Commonly Used)
-    public InternalWorkingApplication(RazorpayPaymentService paymentService) {
+    public InternalWorkingApplication(PaymentService paymentService) {
         this.paymentService = paymentService;
     }
 
