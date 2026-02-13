@@ -26,6 +26,12 @@ public class PatientsTest {
 
     @Test
     public void TestPatientGetById(){
-        Patient p = patientService.getPatientById(1L);
+//        Patient p = patientService.getPatientById(1L);
+//
+//        System.out.println(p);
+
+        Patient p2 = patientRepository.findByName("XYZ");
+
+        System.out.println(p2);
     }
 }
