@@ -34,4 +34,12 @@ public class PatientsTest {
 
         System.out.println(p2);
     }
+
+    @Test
+    public void TestPatientQuery(){
+
+        Patient p = patientRepository.findByEmail("abc");
+
+        System.out.println(p);
+    }
 }
