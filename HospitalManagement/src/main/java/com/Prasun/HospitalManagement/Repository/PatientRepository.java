@@ -16,4 +16,8 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
     //Custom Query
     @Query("SELECT p FROM Patient p where p.email = ?1") //?1 -> first method parameter
     Patient findByEmail(@Param("email") String email);
+
+    //Native Query
+    @Query(value = "select * from patient", nativeQuery = true)
+    List<Patient> findAllPatients();
 }
