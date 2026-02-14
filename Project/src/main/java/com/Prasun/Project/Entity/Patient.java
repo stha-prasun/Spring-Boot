@@ -2,7 +2,6 @@ package com.Prasun.Project.Entity;
 
 import com.Prasun.Project.Entity.Type.BloodGroupType;
 import com.Prasun.Project.Entity.Type.GenderType;
-import com.Prasun.Project.Insurance;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,6 +10,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "patients")
@@ -43,4 +43,7 @@ public class Patient {
     @OneToOne
     @JoinColumn(name = "patient_insurance_id") //owning side
     private Insurance insurance;
+
+    @OneToMany(mappedBy = "patient")
+    private List<Appointment> appointments;
 }

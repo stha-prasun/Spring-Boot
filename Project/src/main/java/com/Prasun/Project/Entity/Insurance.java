@@ -1,6 +1,5 @@
-package com.Prasun.Project;
+package com.Prasun.Project.Entity;
 
-import com.Prasun.Project.Entity.Patient;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
