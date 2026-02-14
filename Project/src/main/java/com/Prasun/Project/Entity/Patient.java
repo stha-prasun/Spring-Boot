@@ -2,6 +2,7 @@ package com.Prasun.Project.Entity;
 
 import com.Prasun.Project.Entity.Type.BloodGroupType;
 import com.Prasun.Project.Entity.Type.GenderType;
+import com.Prasun.Project.Insurance;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,4 +39,8 @@ public class Patient {
 
     @Enumerated(EnumType.STRING)
     private BloodGroupType bloodGroup;
+
+    @OneToOne
+    @JoinColumn(name = "patient_insurance_id") //owning side
+    private Insurance insurance;
 }
