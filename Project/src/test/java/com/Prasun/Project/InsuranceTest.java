@@ -18,12 +18,12 @@ public class InsuranceTest {
     @Test
     public void testInsurance(){
         Insurance insurance = Insurance.builder()
-                .policyNumber("HDCF_123")
+                .policyNumber("HDFC_123")
                 .provider("HDFC")
                 .validUntil(LocalDate.of(2030, 12, 12))
                 .build();
 
-        Patient patient = insuranceService.assignInsuranceToPatient(insurance, 1);
+        Patient patient = insuranceService.assignInsuranceToPatient(insurance, 1L);
 
         System.out.println(patient);
     }
