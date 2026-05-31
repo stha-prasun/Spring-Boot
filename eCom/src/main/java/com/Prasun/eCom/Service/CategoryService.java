@@ -8,8 +8,8 @@ import java.util.List;
 public interface CategoryService {
     CategoryResponseDTO createCategory(CategoryRequestDTO dto);
 
-//    List<CategoryResponseDTO> getAllCategories();
-//
+    List<CategoryResponseDTO> getAllCategories();
+
 //    CategoryResponseDTO getCategoryById(Long id);
 //
 //    CategoryResponseDTO updateCategory(Long id, CategoryRequestDTO dto);

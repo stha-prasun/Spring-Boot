@@ -9,6 +9,9 @@ import com.Prasun.eCom.Service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
@@ -25,5 +28,13 @@ public class CategoryServiceImpl implements CategoryService {
 
         return mapper.toDTO(saved);
 
+    }
+
+    @Override
+    public List<CategoryResponseDTO> getAllCategories(){
+        return repository.findAll()
+                .stream()
+                .map(mapper::toDTO)
+                .toList();
     }
 }
