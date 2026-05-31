@@ -58,4 +58,12 @@ public class CategoryServiceImpl implements CategoryService {
 
         return mapper.toDTO(updated);
     }
+
+    @Override
+    public void deleteCategory(Long id){
+        Category category = repository.findById(id)
+                        .orElseThrow(() -> new ResourceNotFoundException(
+                                        "Category not found with id: " + id));
+        repository.deleteById(id);
+    }
 }
