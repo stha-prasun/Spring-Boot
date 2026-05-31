@@ -25,9 +25,4 @@ public class CategoryMapper {
 
         return dto;
     }
-
-    public void updateEntity(Category category, CategoryRequestDTO dto) {
-
-        category.setName(dto.getName());
-    }
 }

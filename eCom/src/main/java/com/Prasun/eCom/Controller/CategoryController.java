@@ -29,4 +29,9 @@ public class CategoryController {
     public CategoryResponseDTO getCategoryById(@PathVariable Long id){
         return service.getCategoryById(id);
     }
+
+    @PutMapping("/{id}")
+    public CategoryResponseDTO updateCategory(@PathVariable Long id, @Valid @RequestBody CategoryRequestDTO dto){
+        return service.updateCategory(id, dto);
+    }
 }
