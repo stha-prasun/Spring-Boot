@@ -24,4 +24,9 @@ public class CategoryController {
     public List<CategoryResponseDTO> getAllCategories(){
         return service.getAllCategories();
     }
+
+    @GetMapping("/{id}")
+    public CategoryResponseDTO getCategoryById(@PathVariable Long id){
+        return service.getCategoryById(id);
+    }
 }
