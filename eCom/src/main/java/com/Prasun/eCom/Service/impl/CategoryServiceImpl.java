@@ -1,0 +1,29 @@
+package com.Prasun.eCom.Service.impl;
+
+import com.Prasun.eCom.DTO.CategoryRequestDTO;
+import com.Prasun.eCom.DTO.CategoryResponseDTO;
+import com.Prasun.eCom.Entity.Category;
+import com.Prasun.eCom.Mapper.CategoryMapper;
+import com.Prasun.eCom.Repository.CategoryRepository;
+import com.Prasun.eCom.Service.CategoryService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+@Service
+@RequiredArgsConstructor
+public class CategoryServiceImpl implements CategoryService {
+
+    private final CategoryRepository repository;
+    private final CategoryMapper mapper;
+
+
+    @Override
+    public CategoryResponseDTO createCategory(CategoryRequestDTO dto){
+        Category category = mapper.toEntity(dto);
+
+        Category saved = repository.save(category);
+
+        return mapper.toDTO(saved);
+
+    }
+}
