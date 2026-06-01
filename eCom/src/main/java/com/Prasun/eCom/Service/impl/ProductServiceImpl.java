@@ -12,6 +12,8 @@ import com.Prasun.eCom.Service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
@@ -31,5 +33,13 @@ public class ProductServiceImpl implements ProductService {
 
         Product saved = productRepository.save(product);
         return mapper.toDTO(saved);
+    }
+
+    @Override
+    public List<ProductResponseDTO> getAllProducts(){
+        return productRepository.findAll()
+                .stream()
+                .map(mapper::toDTO)
+                .toList();
     }
 }
