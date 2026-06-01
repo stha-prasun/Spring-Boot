@@ -42,4 +42,14 @@ public class ProductServiceImpl implements ProductService {
                 .map(mapper::toDTO)
                 .toList();
     }
+
+    @Override
+    public ProductResponseDTO getProductById(Long id){
+        Product product = productRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException(
+                        "Product Not Found with id:" + id
+                ));
+
+        return mapper.toDTO(product);
+    }
 }
