@@ -64,6 +64,6 @@ public class CategoryServiceImpl implements CategoryService {
         Category category = repository.findById(id)
                         .orElseThrow(() -> new ResourceNotFoundException(
                                         "Category not found with id: " + id));
-        repository.deleteById(id);
+        repository.delete(category);
     }
 }

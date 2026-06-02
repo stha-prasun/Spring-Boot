@@ -52,4 +52,38 @@ public class ProductServiceImpl implements ProductService {
 
         return mapper.toDTO(product);
     }
+
+    @Override
+    public ProductResponseDTO updateProduct(Long id, ProductRequestDTO dto){
+        Product product = productRepository.findById(id)
+                .orElseThrow(()->new ResourceNotFoundException(
+                        "Product Not Found with id:" + id
+                ));
+
+        Category category = categoryRepository.findById(dto.getCategoryId())
+                .orElseThrow(()-> new ResourceNotFoundException(
+                        "Category Not Found:" + dto.getCategoryId()
+                ));
+
+        product.setName(dto.getName());
+        product.setPrice(dto.getPrice());
+        product.setDescription(dto.getDescription());
+        product.setStockQuantity(dto.getStockQuantity());
+
+        product.setCategory(category);
+
+        Product updated = productRepository.save(product);
+
+        return mapper.toDTO(updated);
+    }
+
+    @Override
+    public void deleteProduct(Long id){
+        Product product = productRepository.findById(id)
+                        .orElseThrow(()-> new ResourceNotFoundException(
+                                "Product Not Found with Id:" + id
+                        ));
+
+        productRepository.delete(product);
+    }
 }
