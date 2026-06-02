@@ -43,4 +43,9 @@ public class ProductController {
 
         return "Product deleted successfully";
     }
+
+    @GetMapping("/category/{categoryId}")
+    public List<ProductResponseDTO> findByCategoryId(@PathVariable Long categoryId){
+        return service.findByCategoryId(categoryId);
+    }
 }

@@ -86,4 +86,18 @@ public class ProductServiceImpl implements ProductService {
 
         productRepository.delete(product);
     }
+
+    @Override
+    public List<ProductResponseDTO> findByCategoryId(Long categoryId){
+        if (!categoryRepository.existsById(categoryId)) {
+            throw new ResourceNotFoundException(
+                    "Category not found with id: " + categoryId
+            );
+        }
+
+        return productRepository.findByCategoryId(categoryId)
+                .stream()
+                .map(mapper::toDTO)
+                .toList();
+    }
 }
