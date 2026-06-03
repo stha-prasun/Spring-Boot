@@ -48,4 +48,9 @@ public class ProductController {
     public List<ProductResponseDTO> findByCategoryId(@PathVariable Long categoryId){
         return service.findByCategoryId(categoryId);
     }
+
+    @GetMapping("/search")
+    public List<ProductResponseDTO> searchProducts(@RequestParam String keyword) {
+        return service.searchProducts(keyword);
+    }
 }

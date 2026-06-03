@@ -100,4 +100,12 @@ public class ProductServiceImpl implements ProductService {
                 .map(mapper::toDTO)
                 .toList();
     }
+
+    @Override
+    public List<ProductResponseDTO> searchProducts(String keyword){
+        return productRepository.findByNameContainingIgnoreCase(keyword)
+                .stream()
+                .map(mapper::toDTO)
+                .toList();
+    }
 }
