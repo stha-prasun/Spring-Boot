@@ -21,5 +21,5 @@ public interface ProductService {
 
     List<ProductResponseDTO> searchProducts(String keyword);
 
-    Page<ProductResponseDTO> getProducts(int page, int size);
+    Page<ProductResponseDTO> getProducts(int page, int size, String sortBy, String direction);
 }

@@ -12,6 +12,8 @@ import com.Prasun.eCom.Service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -112,9 +114,15 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<ProductResponseDTO> getProducts(int page, int size) {
+    public Page<ProductResponseDTO> getProducts(int page, int size, String sortBy, String direction) {
 
-        Page<Product> products = productRepository.findAll(PageRequest.of(page, size));
+        Sort sort = direction.equalsIgnoreCase("desc")
+                ? Sort.by(sortBy).descending()
+                : Sort.by(sortBy).ascending();
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        Page<Product> products = productRepository.findAll(pageable);
 
         return products.map(mapper::toDTO);
     }

@@ -62,8 +62,14 @@ public class ProductController {
             int page,
 
             @RequestParam(defaultValue = "5")
-            int size) {
+            int size,
 
-        return service.getProducts(page, size);
+            @RequestParam(defaultValue = "id")
+            String sortBy,
+
+            @RequestParam(defaultValue = "asc")
+            String direction) {
+
+        return service.getProducts(page, size, sortBy, direction);
     }
 }
