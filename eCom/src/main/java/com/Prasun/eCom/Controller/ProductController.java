@@ -5,6 +5,7 @@ import com.Prasun.eCom.DTO.ProductResponseDTO;
 import com.Prasun.eCom.Service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -52,5 +53,17 @@ public class ProductController {
     @GetMapping("/search")
     public List<ProductResponseDTO> searchProducts(@RequestParam String keyword) {
         return service.searchProducts(keyword);
+    }
+
+    @GetMapping("/page")
+    public Page<ProductResponseDTO> getProducts(
+
+            @RequestParam(defaultValue = "0")
+            int page,
+
+            @RequestParam(defaultValue = "5")
+            int size) {
+
+        return service.getProducts(page, size);
     }
 }

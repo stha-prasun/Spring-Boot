@@ -2,7 +2,7 @@ package com.Prasun.eCom.Service;
 
 import com.Prasun.eCom.DTO.ProductRequestDTO;
 import com.Prasun.eCom.DTO.ProductResponseDTO;
-import com.Prasun.eCom.Entity.Product;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -20,4 +20,6 @@ public interface ProductService {
     List<ProductResponseDTO> findByCategoryId(Long categoryId);
 
     List<ProductResponseDTO> searchProducts(String keyword);
+
+    Page<ProductResponseDTO> getProducts(int page, int size);
 }

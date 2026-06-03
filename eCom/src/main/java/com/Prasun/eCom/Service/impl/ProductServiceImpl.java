@@ -10,6 +10,8 @@ import com.Prasun.eCom.Repository.CategoryRepository;
 import com.Prasun.eCom.Repository.ProductRepository;
 import com.Prasun.eCom.Service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -107,5 +109,13 @@ public class ProductServiceImpl implements ProductService {
                 .stream()
                 .map(mapper::toDTO)
                 .toList();
+    }
+
+    @Override
+    public Page<ProductResponseDTO> getProducts(int page, int size) {
+
+        Page<Product> products = productRepository.findAll(PageRequest.of(page, size));
+
+        return products.map(mapper::toDTO);
     }
 }
