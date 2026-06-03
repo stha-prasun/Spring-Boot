@@ -9,16 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductResponseDTO {
+public class CategorySummaryDTO {
     private Long id;
-
     private String name;
-
-    private String description;
-
-    private Double price;
-
-    private Integer stockQuantity;
-
-    private CategorySummaryDTO category;
 }

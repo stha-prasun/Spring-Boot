@@ -1,5 +1,6 @@
 package com.Prasun.eCom.Mapper;
 
+import com.Prasun.eCom.DTO.CategorySummaryDTO;
 import com.Prasun.eCom.DTO.ProductRequestDTO;
 import com.Prasun.eCom.DTO.ProductResponseDTO;
 import com.Prasun.eCom.Entity.Product;
@@ -28,8 +29,13 @@ public class ProductMapper {
         dto.setDescription(product.getDescription());
         dto.setPrice(product.getPrice());
         dto.setStockQuantity(product.getStockQuantity());
-        dto.setCategoryId(product.getCategory().getId());
-        dto.setCategoryName(product.getCategory().getName());
+
+        CategorySummaryDTO categoryDTO = new CategorySummaryDTO(
+                        product.getCategory().getId(),
+                        product.getCategory().getName()
+                );
+
+        dto.setCategory(categoryDTO);
 
         return dto;
     }
