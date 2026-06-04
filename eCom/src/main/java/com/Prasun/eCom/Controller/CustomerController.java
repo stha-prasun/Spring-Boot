@@ -26,4 +26,19 @@ public class CustomerController {
 
         return service.getAllCustomers();
     }
+
+    @GetMapping("/{id}")
+    public CustomerResponseDTO getCustomerById(@PathVariable Long id) {
+
+        return service.getCustomerById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteCustomer(@PathVariable Long id) {
+
+        service.deleteCustomer(id);
+
+        return "Customer deleted successfully";
+    }
+
 }

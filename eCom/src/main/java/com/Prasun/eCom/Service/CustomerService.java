@@ -10,7 +10,7 @@ public interface CustomerService {
 
     List<CustomerResponseDTO> getAllCustomers();
 
-//    CustomerResponseDTO getCustomerById(Long id);
-//
-//    void deleteCustomer(Long id);
+    CustomerResponseDTO getCustomerById(Long id);
+
+    void deleteCustomer(Long id);
 }
