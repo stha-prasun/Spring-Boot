@@ -21,7 +21,7 @@ public class Customer {
 
     private String email;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL) // Customer delete gareyo bhane address pani delete hunxa. Hamile cascade tye bhayera Product ma use na gareko. If product delete gareyo bhane category delete hunu hudaina.
     @JoinColumn(name = "address_id")
 
     private Address address;
