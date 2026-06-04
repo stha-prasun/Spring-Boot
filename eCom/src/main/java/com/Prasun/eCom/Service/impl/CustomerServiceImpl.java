@@ -10,6 +10,8 @@ import com.Prasun.eCom.Service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
@@ -23,5 +25,13 @@ public class CustomerServiceImpl implements CustomerService {
         Customer saved = repository.save(customer);
 
         return mapper.toDTO(saved);
+    }
+
+    @Override
+    public List<CustomerResponseDTO> getAllCustomers(){
+        return repository.findAll()
+                .stream()
+                .map(mapper::toDTO)
+                .toList();
     }
 }

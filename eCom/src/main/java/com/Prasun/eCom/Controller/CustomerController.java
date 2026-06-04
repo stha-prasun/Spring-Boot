@@ -5,10 +5,9 @@ import com.Prasun.eCom.DTO.CustomerResponseDTO;
 import com.Prasun.eCom.Service.CustomerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/customers")
@@ -20,5 +19,11 @@ public class CustomerController {
     public CustomerResponseDTO createCustomer(@Valid @RequestBody CustomerRequestDTO dto) {
 
         return service.createCustomer(dto);
+    }
+
+    @GetMapping
+    public List<CustomerResponseDTO> getAllCustomers() {
+
+        return service.getAllCustomers();
     }
 }
