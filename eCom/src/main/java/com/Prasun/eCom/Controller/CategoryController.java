@@ -1,5 +1,6 @@
 package com.Prasun.eCom.Controller;
 
+import com.Prasun.eCom.DTO.CategoryDetailsDTO;
 import com.Prasun.eCom.DTO.CategoryRequestDTO;
 import com.Prasun.eCom.DTO.CategoryResponseDTO;
 import com.Prasun.eCom.Service.CategoryService;
@@ -38,5 +39,11 @@ public class CategoryController {
     @DeleteMapping("/{id}")
     public void deleteCategory(@PathVariable Long id){
         service.deleteCategory(id);
+    }
+
+    @GetMapping("/{id}/details")
+    public CategoryDetailsDTO getCategoryDetails(@PathVariable Long id) {
+
+        return service.getCategoryDetails(id);
     }
 }

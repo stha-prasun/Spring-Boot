@@ -1,5 +1,6 @@
 package com.Prasun.eCom.Service;
 
+import com.Prasun.eCom.DTO.CategoryDetailsDTO;
 import com.Prasun.eCom.DTO.CategoryRequestDTO;
 import com.Prasun.eCom.DTO.CategoryResponseDTO;
 
@@ -15,4 +16,6 @@ public interface CategoryService {
     CategoryResponseDTO updateCategory(Long id, CategoryRequestDTO dto);
 
     void deleteCategory(Long id);
+
+    CategoryDetailsDTO getCategoryDetails(Long id);
 }

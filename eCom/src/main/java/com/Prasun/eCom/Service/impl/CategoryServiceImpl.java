@@ -1,5 +1,6 @@
 package com.Prasun.eCom.Service.impl;
 
+import com.Prasun.eCom.DTO.CategoryDetailsDTO;
 import com.Prasun.eCom.DTO.CategoryRequestDTO;
 import com.Prasun.eCom.DTO.CategoryResponseDTO;
 import com.Prasun.eCom.Entity.Category;
@@ -65,5 +66,16 @@ public class CategoryServiceImpl implements CategoryService {
                         .orElseThrow(() -> new ResourceNotFoundException(
                                         "Category not found with id: " + id));
         repository.delete(category);
+    }
+
+    @Override
+    public CategoryDetailsDTO getCategoryDetails(Long id) {
+
+        Category category = repository.findById(id)
+                        .orElseThrow(() -> new ResourceNotFoundException(
+                                        "Category not found with id: " + id
+                        ));
+
+        return mapper.toDetailsDTO(category);
     }
 }
