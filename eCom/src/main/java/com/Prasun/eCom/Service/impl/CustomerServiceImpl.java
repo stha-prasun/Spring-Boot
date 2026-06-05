@@ -3,9 +3,11 @@ package com.Prasun.eCom.Service.impl;
 import com.Prasun.eCom.DTO.CustomerRequestDTO;
 import com.Prasun.eCom.DTO.CustomerResponseDTO;
 import com.Prasun.eCom.Entity.Address;
+import com.Prasun.eCom.Entity.Cart;
 import com.Prasun.eCom.Entity.Customer;
 import com.Prasun.eCom.Exception.ResourceNotFoundException;
 import com.Prasun.eCom.Mapper.CustomerMapper;
+import com.Prasun.eCom.Repository.CartRepository;
 import com.Prasun.eCom.Repository.CustomerRepository;
 import com.Prasun.eCom.Service.CustomerService;
 import lombok.RequiredArgsConstructor;
@@ -18,12 +20,20 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
     private final CustomerMapper mapper;
     private final CustomerRepository repository;
+    private final CartRepository cartRepository;
 
     @Override
     public CustomerResponseDTO createCustomer(CustomerRequestDTO dto){
         Customer customer = mapper.toEntity(dto);
 
         Customer saved = repository.save(customer);
+
+        Cart cart = new Cart();
+
+        cart.setCustomer(saved);
+        saved.setCart(cart); // Not necessary but keeping both sides synchronized is a good JPA practice
+
+        cartRepository.save(cart);
 
         return mapper.toDTO(saved);
     }
