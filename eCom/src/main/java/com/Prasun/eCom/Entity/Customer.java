@@ -25,4 +25,10 @@ public class Customer {
     @JoinColumn(name = "address_id")
 
     private Address address;
+
+    @OneToOne(
+            mappedBy = "customer",
+            cascade = CascadeType.ALL
+    )
+    private Cart cart;
 }
