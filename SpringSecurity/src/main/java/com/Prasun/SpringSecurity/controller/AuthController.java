@@ -1,5 +1,6 @@
 package com.Prasun.SpringSecurity.controller;
 
+import com.Prasun.SpringSecurity.dto.LoginRequestDTO;
 import com.Prasun.SpringSecurity.dto.RegisterRequestDTO;
 import com.Prasun.SpringSecurity.service.AuthService;
 import jakarta.validation.Valid;
@@ -19,5 +20,11 @@ public class AuthController {
     public String register(@Valid @RequestBody RegisterRequestDTO request) {
 
         return service.register(request);
+    }
+
+    @PostMapping("/login")
+    public String login(@Valid @RequestBody LoginRequestDTO request) {
+
+        return service.login(request);
     }
 }
