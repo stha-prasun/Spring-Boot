@@ -1,5 +1,6 @@
 package com.Prasun.SpringSecurity.service;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -7,7 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import java.security.Key;
+import javax.crypto.SecretKey;
 import java.util.Date;
 
 @Service
@@ -15,10 +16,8 @@ public class JwtService {
     @Value("${jwt.secret}")
     private String secret;
 
-    private Key getSignInKey() {
-
+    private SecretKey getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(secret);
-
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
@@ -35,5 +34,36 @@ public class JwtService {
                 )
                 .signWith(getSignInKey())
                 .compact();
+    }
+
+    // Extract username from JWT
+    public String extractUsername(String token) {
+        return extractAllClaims(token).getSubject();
+    }
+
+    // Validate token
+    public boolean isTokenValid(String token, UserDetails userDetails) {
+
+        String username = extractUsername(token);
+
+        return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
+    }
+
+    // Check expiry
+    private boolean isTokenExpired(String token) {
+
+        return extractAllClaims(token)
+                .getExpiration()
+                .before(new Date());
+    }
+
+    // Extract all claims from JWT
+    private Claims extractAllClaims(String token) {
+
+        return Jwts.parser()
+                .verifyWith(getSignInKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
     }
 }
